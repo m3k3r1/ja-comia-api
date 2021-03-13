@@ -2,11 +2,6 @@
   <a href="" target="blank"><img src="https://graph.facebook.com/113809823611206/picture?type=large" width="100" alt="Nest Logo" /></a>
 </p>
 
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
 ## Installation
 
 ```bash
