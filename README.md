@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://graph.facebook.com/113809823611206/picture?type=large" width="320" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://www.facebook.com/eujacomia/photos/a.113809876944534/146040697054785/" height="200" alt="Nest Logo" /></a>
 </p>
 
 
