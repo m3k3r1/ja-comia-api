@@ -7,7 +7,7 @@ export class GetAllUsersHandlerQuery
   implements IQueryHandler<GetAllUsersQuery> {
   public constructor(private readonly userStore: UserStore) {}
 
-  public async execute(query: GetAllUsersQuery) {
+  public async execute() {
     return await this.userStore.findAll();
   }
 }

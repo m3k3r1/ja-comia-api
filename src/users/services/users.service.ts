@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import User from '../entities/user.entity';
 import { GetAllUsersQuery } from '../queries/get-all-users.query';
+import { GetUserByIdQuery } from '../queries/get-user-by-id.query';
 
 @Injectable()
 export class UsersService {
@@ -13,8 +14,8 @@ export class UsersService {
   public async getAll(): Promise<User[]> {
     return this.queryBus.execute(new GetAllUsersQuery());
   }
-  public async getById(): Promise<User | undefined> {
-    return null;
+  public async getById(id: string): Promise<User> {
+    return this.queryBus.execute(new GetUserByIdQuery(id));
   }
   public async create(): Promise<User> {
     return null;

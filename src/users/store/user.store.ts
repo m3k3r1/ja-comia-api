@@ -13,4 +13,7 @@ export class UserStore {
   public async findAll(): Promise<User[]> {
     return await this.taskRepository.find();
   }
+  public async findOne(id: string): Promise<User> {
+    return await this.taskRepository.findOne(id);
+  }
 }

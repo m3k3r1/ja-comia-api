@@ -1,4 +1,11 @@
-import { Controller, Delete, Get, Post } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseUUIDPipe,
+  Post,
+} from '@nestjs/common';
 import User from '../entities/user.entity';
 import { UsersService } from '../services/users.service';
 
@@ -12,8 +19,8 @@ export class UsersController {
   }
 
   @Get(':id')
-  public getById(): Promise<User> {
-    return this.usersService.getById();
+  public getById(@Param('id', ParseUUIDPipe) id: string): Promise<User> {
+    return this.usersService.getById(id);
   }
 
   @Post('')
