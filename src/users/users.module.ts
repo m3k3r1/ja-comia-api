@@ -6,10 +6,11 @@ import { UserRepository } from './repositories/user.repository';
 import { UsersService } from './services/users.service';
 import { QueriesHandlers } from './queries/handlers';
 import { UserStore } from './store/user.store';
+import { CommandHandlers } from './commands/handler';
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([UserRepository])],
   controllers: [UsersController],
-  providers: [...QueriesHandlers, UsersService, UserStore],
+  providers: [...QueriesHandlers, ...CommandHandlers, UsersService, UserStore],
 })
 export class UsersModule {}

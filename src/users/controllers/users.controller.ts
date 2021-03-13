@@ -1,11 +1,15 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
   Param,
   ParseUUIDPipe,
   Post,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
+import CreateUserDTO from '../dtos/create-task.dto';
 import User from '../entities/user.entity';
 import { UsersService } from '../services/users.service';
 
@@ -23,9 +27,10 @@ export class UsersController {
     return this.usersService.getById(id);
   }
 
-  @Post('')
-  public create(): Promise<User> {
-    return this.usersService.create();
+  @Post()
+  @UsePipes(ValidationPipe)
+  public create(@Body() createUserDTO: CreateUserDTO): Promise<User> {
+    return this.usersService.create(createUserDTO);
   }
 
   @Delete(':id')
