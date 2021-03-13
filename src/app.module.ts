@@ -5,6 +5,7 @@ import { OrdersModule } from './orders/orders.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { KitchenModule } from './kitchen/kitchen.module';
 import { PaymentsModule } from './payments/payments.module';
+import BCryptHashProvider from './users/providers/HashProvider/implementations/bcrypt-hash.provider';
 
 @Module({
   imports: [

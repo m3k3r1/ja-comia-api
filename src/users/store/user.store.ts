@@ -27,4 +27,12 @@ export class UserStore {
   public async save(user: User): Promise<User> {
     return this.taskRepository.save(user);
   }
+
+  async findByEmail(email: string): Promise<User | undefined> {
+    const user = await this.taskRepository.findOne({
+      where: { email },
+    });
+
+    return user;
+  }
 }

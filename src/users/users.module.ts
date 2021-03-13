@@ -7,10 +7,18 @@ import { UsersService } from './services/users.service';
 import { QueriesHandlers } from './queries/handlers';
 import { UserStore } from './store/user.store';
 import { CommandHandlers } from './commands/handler';
+import BCryptHashProvider from './providers/HashProvider/implementations/bcrypt-hash.provider';
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([UserRepository])],
   controllers: [UsersController],
-  providers: [...QueriesHandlers, ...CommandHandlers, UsersService, UserStore],
+  providers: [
+    ...QueriesHandlers,
+    ...CommandHandlers,
+    UsersService,
+    UserStore,
+    BCryptHashProvider,
+  ],
+  exports: [BCryptHashProvider],
 })
 export class UsersModule {}
