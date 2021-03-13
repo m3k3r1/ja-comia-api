@@ -1,0 +1,19 @@
+{
+  "name":"default",
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password":"abc123123",
+  "database": "jacomia",
+  "entities":[
+    "dist/src/**/entities/*.js"
+  ],
+  "migrations": [
+    "_shared/migrations/*.js"
+  ],
+  "cli": {
+    "migrationsDir": "src/_shared/migrations",
+    "entitiesDir": "src/**/entities/*.ts"
+  }
+}
