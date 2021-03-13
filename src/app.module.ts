@@ -5,16 +5,21 @@ import { OrdersModule } from './orders/orders.module';
 import { RestaurantsModule } from './restaurants/restaurants.module';
 import { KitchenModule } from './kitchen/kitchen.module';
 import { PaymentsModule } from './payments/payments.module';
-import BCryptHashProvider from './users/providers/HashProvider/implementations/bcrypt-hash.provider';
+import { RestaurantItemsModule } from './restaurant-items/restaurant-items.module';
+import { ConfigModule } from 'nestjs-config';
+import * as path from 'path';
 
 @Module({
   imports: [
+    ConfigModule,
+    ConfigModule.load(path.resolve(__dirname, 'config', '**/!(*.d).{ts,js}')),
     TypeOrmModule.forRoot(),
     UsersModule,
     OrdersModule,
     RestaurantsModule,
     KitchenModule,
     PaymentsModule,
+    RestaurantItemsModule,
   ],
 })
 export class AppModule {}
