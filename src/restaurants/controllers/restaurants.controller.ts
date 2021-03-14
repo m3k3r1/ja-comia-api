@@ -22,6 +22,7 @@ import { RestaurantsService } from '../services/restaurants.service';
 export class RestaurantsController {
   public constructor(private readonly restaurantsService: RestaurantsService) {}
 
+  // TODO change UUID Validator Pipe to intercept request before Amazon upload
   @Patch(':id/logo')
   @UseInterceptors(
     AmazonS3FileInterceptor('file', {
@@ -33,7 +34,7 @@ export class RestaurantsController {
       ],
     }),
   )
-  changeLogo(@UploadedFile() file, @Param('id', ParseUUIDPipe) id: string) {
+  changeLogo(@Param('id', ParseUUIDPipe) id: string, @UploadedFile() file) {
     const uploadImageDTO: UploadImageDTO = {
       restaurant_id: id,
       sm: file.sm.Location,
@@ -43,6 +44,7 @@ export class RestaurantsController {
     return this.restaurantsService.changeLogo(uploadImageDTO);
   }
 
+  // TODO change to UUID Validator Pipe  to intercept request before Amazon upload
   @Patch(':id/cover')
   @UseInterceptors(
     AmazonS3FileInterceptor('file', {

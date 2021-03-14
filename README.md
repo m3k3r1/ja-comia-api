@@ -33,3 +33,6 @@ $ yarn test:cov
 
 ## Users Module
 ![alt text](https://github.com/m3k3r1/ja-comia-api/blob/main/doc/user-schema.png)
+
+## Restaurant Module
+![alt text](https://github.com/m3k3r1/ja-comia-api/blob/main/doc/restaurant-schema.png)
