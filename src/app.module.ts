@@ -7,6 +7,7 @@ import { KitchenModule } from './kitchen/kitchen.module';
 import { PaymentsModule } from './payments/payments.module';
 import { RestaurantItemsModule } from './restaurant-items/restaurant-items.module';
 import { ConfigModule } from 'nestjs-config';
+import { OrderHistoryModule } from './order-history/order-history.module';
 import * as path from 'path';
 
 @Module({
@@ -20,6 +21,7 @@ import * as path from 'path';
     KitchenModule,
     PaymentsModule,
     RestaurantItemsModule,
+    OrderHistoryModule,
   ],
 })
 export class AppModule {}

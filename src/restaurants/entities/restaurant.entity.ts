@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('restaurant')
+@Entity('restaurants')
 export default class Restaurant extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -16,10 +16,10 @@ export default class Restaurant extends BaseEntity {
   name: string;
 
   @Column()
-  cover: string;
+  cover?: string;
 
   @Column()
-  logo: string;
+  logo?: string;
 
   @Column()
   email: string;

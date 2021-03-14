@@ -10,7 +10,7 @@
     "dist/**/*.entity{.ts,.js}"
   ],
   "migrations": [
-    "_shared/migrations/*.js"
+    "dist/_shared/migrations/*{.ts,.js}"
   ],
   "cli": {
     "migrationsDir": "src/_shared/migrations"

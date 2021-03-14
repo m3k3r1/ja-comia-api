@@ -3,11 +3,23 @@ import {
   Post,
   UseInterceptors,
   UploadedFile,
+  Delete,
+  UsePipes,
+  ValidationPipe,
+  Body,
+  ParseUUIDPipe,
+  Param,
+  Get,
 } from '@nestjs/common';
 import { AmazonS3FileInterceptor } from 'nestjs-multer-extended';
+import CreateRestaurantDTO from '../dtos/create-restaurant.dto';
+import Restaurant from '../entities/restaurant.entity';
+import { RestaurantsService } from '../services/restaurants.service';
 
 @Controller('restaurants')
 export class RestaurantsController {
+  public constructor(private readonly restaurantsService: RestaurantsService) {}
+
   @Post('logo')
   @UseInterceptors(
     AmazonS3FileInterceptor('file', {
@@ -21,5 +33,28 @@ export class RestaurantsController {
   )
   uploadFile(@UploadedFile() file) {
     console.log(file);
+  }
+
+  @Get()
+  public getAll(): Promise<Restaurant[]> {
+    return this.restaurantsService.getAll();
+  }
+
+  @Get(':id')
+  public getById(@Param('id', ParseUUIDPipe) id: string): Promise<Restaurant> {
+    return this.restaurantsService.getById(id);
+  }
+
+  @Post()
+  @UsePipes(ValidationPipe)
+  public create(
+    @Body() createRestaurantDTO: CreateRestaurantDTO,
+  ): Promise<Restaurant> {
+    return this.restaurantsService.create(createRestaurantDTO);
+  }
+
+  @Delete(':id')
+  public delete(): Promise<void> {
+    return this.restaurantsService.delete();
   }
 }
