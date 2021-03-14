@@ -22,10 +22,12 @@ export default class CreateRestaurant1615654219098
           {
             name: 'logo',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'cover',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'address',

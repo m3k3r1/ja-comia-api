@@ -8,6 +8,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { QueriesHandlers } from './queries/handlers';
 import { RestaurantStore } from './store/restaurant.store';
+import { CommandHandlers } from './commands/handler';
 
 @Module({
   imports: [
@@ -19,6 +20,11 @@ import { RestaurantStore } from './store/restaurant.store';
     }),
   ],
   controllers: [RestaurantsController],
-  providers: [...QueriesHandlers, RestaurantStore, RestaurantsService],
+  providers: [
+    ...QueriesHandlers,
+    ...CommandHandlers,
+    RestaurantStore,
+    RestaurantsService,
+  ],
 })
 export class RestaurantsModule {}

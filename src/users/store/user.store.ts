@@ -8,28 +8,28 @@ import { UserRepository } from '../repositories/user.repository';
 export class UserStore {
   constructor(
     @InjectRepository(UserRepository)
-    private taskRepository: UserRepository,
+    private userRepository: UserRepository,
   ) {}
 
   public async findAll(): Promise<User[]> {
-    return await this.taskRepository.find();
+    return await this.userRepository.find();
   }
   public async findOne(id: string): Promise<User> {
-    return await this.taskRepository.findOne(id);
+    return await this.userRepository.findOne(id);
   }
 
   public async create(createUserDTO: CreateUserDTO): Promise<User> {
-    const user = await this.taskRepository.create(createUserDTO);
-    await this.taskRepository.save(user);
+    const user = await this.userRepository.create(createUserDTO);
+    await this.userRepository.save(user);
     return user;
   }
 
   public async save(user: User): Promise<User> {
-    return this.taskRepository.save(user);
+    return this.userRepository.save(user);
   }
 
   async findByEmail(email: string): Promise<User | undefined> {
-    const user = await this.taskRepository.findOne({
+    const user = await this.userRepository.findOne({
       where: { email },
     });
 

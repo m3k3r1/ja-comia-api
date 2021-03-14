@@ -10,6 +10,7 @@ import {
   ParseUUIDPipe,
   Param,
   Get,
+  Patch,
 } from '@nestjs/common';
 import { AmazonS3FileInterceptor } from 'nestjs-multer-extended';
 import CreateRestaurantDTO from '../dtos/create-restaurant.dto';
@@ -20,10 +21,10 @@ import { RestaurantsService } from '../services/restaurants.service';
 export class RestaurantsController {
   public constructor(private readonly restaurantsService: RestaurantsService) {}
 
-  @Post('logo')
+  @Patch(':id/logo')
   @UseInterceptors(
     AmazonS3FileInterceptor('file', {
-      dynamicPath: 'restaurants',
+      dynamicPath: ['restaurant', 'id'],
       resizeMultiple: [
         { suffix: 'sm', width: 200, height: 200 },
         { suffix: 'md', width: 300, height: 300 },
