@@ -29,7 +29,7 @@ export class CreateRestaurantCommandHandler
     const restaurantAggregate = this.publisher.mergeObjectContext(
       await new RestaurantAggregate(restaurant.id),
     );
-    restaurantAggregate.registerProduct(createRestaurantDTO);
+    restaurantAggregate.registerRestaurant(createRestaurantDTO);
     restaurantAggregate.commit();
 
     return restaurant;

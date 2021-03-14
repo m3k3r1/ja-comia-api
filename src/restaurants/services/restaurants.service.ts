@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateRestaurantCommand } from '../commands/create-restaurant.command';
+import { UpdateRestaurantCoverCommand } from '../commands/update-restaurant-cover.command';
+import { UpdateRestaurantLogoCommand } from '../commands/update-restaurant-logo.command';
 import CreateRestaurantDTO from '../dtos/create-restaurant.dto';
+import { UploadImageDTO } from '../dtos/upload-image.dto';
 import Restaurant from '../entities/restaurant.entity';
 import { GetAllRestaurantsQuery } from '../queries/get-all-restaurants.query';
 import { GetRestaurantByIdQuery } from '../queries/get-restaurant-by-id.query';
@@ -28,5 +31,17 @@ export class RestaurantsService {
   }
   public async delete(): Promise<void> {
     return null;
+  }
+  public async changeCover(
+    uploadImageDTO: UploadImageDTO,
+  ): Promise<Restaurant> {
+    return this.commandBus.execute(
+      new UpdateRestaurantCoverCommand(uploadImageDTO),
+    );
+  }
+  public async changeLogo(uploadImageDTO: UploadImageDTO): Promise<Restaurant> {
+    return this.commandBus.execute(
+      new UpdateRestaurantLogoCommand(uploadImageDTO),
+    );
   }
 }

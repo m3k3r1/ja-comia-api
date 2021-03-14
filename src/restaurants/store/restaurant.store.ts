@@ -28,8 +28,8 @@ export class RestaurantStore {
     return restaurant;
   }
 
-  public async save(user: Restaurant): Promise<Restaurant> {
-    return this.restaurantsRepository.save(user);
+  public async save(restaurant: Restaurant): Promise<Restaurant> {
+    return this.restaurantsRepository.save(restaurant);
   }
 
   async findByEmail(email: string): Promise<Restaurant | undefined> {

@@ -20,12 +20,32 @@ export default class CreateRestaurant1615654219098
             type: 'varchar',
           },
           {
-            name: 'logo',
+            name: 'logoSm',
             type: 'varchar',
             isNullable: true,
           },
           {
-            name: 'cover',
+            name: 'logoMd',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'logoLg',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'coverSm',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'coverMd',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'coverLg',
             type: 'varchar',
             isNullable: true,
           },

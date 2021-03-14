@@ -16,10 +16,22 @@ export default class Restaurant extends BaseEntity {
   name: string;
 
   @Column()
-  cover?: string;
+  coverSm?: string;
 
   @Column()
-  logo?: string;
+  coverMd?: string;
+
+  @Column()
+  coverLg?: string;
+
+  @Column()
+  logoSm?: string;
+
+  @Column()
+  logoMd?: string;
+
+  @Column()
+  logoLg?: string;
 
   @Column()
   email: string;
