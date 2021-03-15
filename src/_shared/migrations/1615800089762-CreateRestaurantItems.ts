@@ -1,12 +1,11 @@
-import { type } from 'node:os';
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateRestaurantSection1615729924935
+export default class CreateRestaurantItems1615800089762
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'restaurant_sections',
+        name: 'restaurant_items',
         columns: [
           {
             name: 'id',
@@ -16,13 +15,20 @@ export class CreateRestaurantSection1615729924935
             default: 'uuid_generate_v4()',
           },
           {
+            name: 'section_id',
+            type: 'uuid',
+          },
+          {
             name: 'name',
             type: 'varchar',
           },
           {
-            name: 'restaurant_id',
-            type: 'uuid',
-            isNullable: false,
+            name: 'description',
+            type: 'varchar',
+          },
+          {
+            name: 'price',
+            type: 'float',
           },
           {
             name: 'created_at',
@@ -37,10 +43,10 @@ export class CreateRestaurantSection1615729924935
         ],
         foreignKeys: [
           {
-            name: 'restaurant_fk',
-            columnNames: ['restaurant_id'],
+            name: 'section_fk',
+            columnNames: ['section_id'],
             referencedColumnNames: ['id'],
-            referencedTableName: 'restaurants',
+            referencedTableName: 'restaurant_sections',
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
@@ -50,6 +56,6 @@ export class CreateRestaurantSection1615729924935
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('restaurant_sections');
+    await queryRunner.dropTable('restaurant_items');
   }
 }
