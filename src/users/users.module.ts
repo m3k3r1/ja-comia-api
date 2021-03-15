@@ -8,17 +8,33 @@ import { QueriesHandlers } from './queries/handlers';
 import { UserStore } from './store/user.store';
 import { CommandHandlers } from './commands/handler';
 import BCryptHashProvider from './providers/HashProvider/implementations/bcrypt-hash.provider';
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigService } from 'nestjs-config';
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './jwt/jwt.strategy';
+import { AuthController } from './controllers/auth.controller';
+import { AuthService } from './services/auth.service';
 
 @Module({
-  imports: [CqrsModule, TypeOrmModule.forFeature([UserRepository])],
-  controllers: [UsersController],
+  imports: [
+    JwtModule.registerAsync({
+      useFactory: (config: ConfigService) => config.get('jwt'),
+      inject: [ConfigService],
+    }),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    CqrsModule,
+    TypeOrmModule.forFeature([UserRepository]),
+  ],
+  controllers: [UsersController, AuthController],
   providers: [
     ...QueriesHandlers,
     ...CommandHandlers,
+    AuthService,
     UsersService,
     UserStore,
     BCryptHashProvider,
+    JwtStrategy,
   ],
-  exports: [BCryptHashProvider],
+  exports: [JwtStrategy, PassportModule],
 })
 export class UsersModule {}

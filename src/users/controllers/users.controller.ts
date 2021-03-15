@@ -7,10 +7,14 @@ import {
   Param,
   ParseUUIDPipe,
   Post,
+  Req,
+  UseGuards,
   UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from '../decorator/get-user.decorator';
 import CreateUserDTO from '../dtos/create-task.dto';
 import User from '../entities/user.entity';
 import { UsersService } from '../services/users.service';
@@ -21,7 +25,9 @@ export class UsersController {
   public constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  public getAll(): Promise<User[]> {
+  @UseGuards(AuthGuard())
+  public getAll(@GetUser() user: User): Promise<User[]> {
+    console.log(user);
     return this.usersService.getAll();
   }
 
