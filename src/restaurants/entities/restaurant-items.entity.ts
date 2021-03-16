@@ -1,4 +1,3 @@
-import RestaurantSections from 'src/restaurant-sections/entities/restaurant-sections.entity';
 import {
   BaseEntity,
   Column,
@@ -9,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import RestaurantSections from './restaurant-sections.entity';
 
 @Entity('restaurant_items')
 export default class RestaurantItems extends BaseEntity {

@@ -9,11 +9,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { QueriesHandlers } from './queries/handlers';
 import { RestaurantStore } from './store/restaurant.store';
 import { CommandHandlers } from './commands/handler';
+import { RestaurantSectionsRepository } from './repositories/restaurant-sections.repository';
 
 @Module({
   imports: [
     CqrsModule,
     TypeOrmModule.forFeature([RestaurantRepository]),
+    TypeOrmModule.forFeature([RestaurantSectionsRepository]),
     MulterExtendedModule.registerAsync({
       useFactory: (config: ConfigService) => config.get('s3'),
       inject: [ConfigService],
